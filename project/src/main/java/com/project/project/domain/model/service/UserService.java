@@ -33,5 +33,12 @@ public class UserService {
     private boolean isPasswordValid(String password) {
         return password.length() >= 8 && password.matches(".*\\d.*"); // Verifica se tem ao menos um número
     }
+
+    public User login(String email, String password) {
+        return users.stream()
+                .filter(u -> u.email().equals(email) && u.password().equals(password))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Email ou senha inválidos!"));
+    }
     
 }
