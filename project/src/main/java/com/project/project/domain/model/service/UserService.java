@@ -14,7 +14,6 @@ public class UserService {
         // Valida se o usuario existe
         if (users.contains(user))
             throw new RuntimeException();
-        users.add(user);
 
         // Verificar se o email já está cadastrado
         if (users.stream().anyMatch(u -> u.email().equals(user.email()))) {
@@ -26,6 +25,7 @@ public class UserService {
             throw new IllegalArgumentException("Senha inválida! Deve ter pelo menos 8 caracteres e incluir ao menos um número.");
         }
 
+        users.add(user);
         return users;
     }
 
